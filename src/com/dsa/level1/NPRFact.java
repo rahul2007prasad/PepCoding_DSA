@@ -9,8 +9,8 @@ public class NPRFact {
 		return xsquare;
 	}
 	public static int fact(int x) {
-		int rv;
-		for(int i =1 i <=x ; i++) {
+		int rv=0;
+		for(int i =1; i <=x ; i++) {
 			rv = rv * i;
 		}
 		return rv;
