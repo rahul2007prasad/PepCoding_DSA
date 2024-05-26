@@ -134,6 +134,30 @@ public class GenericTree {
 		
 	}
 	
+	public static void linearizeGenericTree(Node node) {
+		
+		for(Node child : node.children) {
+			linearizeGenericTree(child);
+		}
+		
+		while(node.children.size() > 1) {
+			Node lc = node.children.remove(node.children.size() -1); // last child
+			Node sl = node.children.get(node.children.size() -1); //second last
+			Node slt = getTail(sl) ;// second last tail
+			slt.children.add(lc);
+			
+			
+		}
+		
+	}
+	//get tail
+	private static Node getTail(Node node) {
+		while(node.children.size() == 1) {
+			node = node.children.get(0);
+		}
+		return node;
+	}
+	
 	
 	public static void levelOrderLineWiseZigZag(Node node) {
 		Stack<Node> ms = new Stack<GenericTree.Node>();
