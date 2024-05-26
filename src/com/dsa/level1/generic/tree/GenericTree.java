@@ -159,6 +159,30 @@ public class GenericTree {
 	}
 	
 	
+	//find elements
+	public static boolean findElements(Node node , int data) {
+		
+		if(node.data == data) {
+			return true;
+		}
+		
+		for(Node child : node.children) {
+			boolean fic = findElements(child, data);
+			if(fic) {
+				return true;
+			}
+		}
+		return false;
+		
+	}
+	
+	//node to root path
+	public static void nodeToRootPath(Node node , int data) {
+		
+		
+		
+	}
+	
 	public static void levelOrderLineWiseZigZag(Node node) {
 		Stack<Node> ms = new Stack<GenericTree.Node>();
 		ms.push(node);
@@ -240,5 +264,13 @@ public class GenericTree {
 		
 		System.out.println("-----level order zigzag traversal----");
 		levelOrderLineWiseZigZag(root);
+		
+		
+		
+		System.out.println("Find elements--");
+		boolean findElements = findElements(root, 40);
+		System.out.println(findElements);
+		
+		
 	}
 }
