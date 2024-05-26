@@ -177,9 +177,25 @@ public class GenericTree {
 	}
 	
 	//node to root path
-	public static void nodeToRootPath(Node node , int data) {
+	public static ArrayList<Integer> nodeToRootPath(Node node , int data) {
+		
+		if(node.data == data) {
+			ArrayList<Integer> list = new ArrayList<Integer>();
+			list.add(node.data);
+			return list;
+		}
 		
 		
+		for(Node child : node.children) {
+			ArrayList<Integer> pathTillChild = nodeToRootPath(child, data);
+			
+			if(pathTillChild.size() > 0) {
+				pathTillChild.add(node.data);
+				return pathTillChild;
+			}
+		}
+		
+		return new ArrayList<Integer>();
 		
 	}
 	
@@ -271,6 +287,9 @@ public class GenericTree {
 		boolean findElements = findElements(root, 40);
 		System.out.println(findElements);
 		
+		System.out.println("Node to root path");
+		ArrayList<Integer> nodeToRootPath = nodeToRootPath(root, 40);
+		System.err.println(nodeToRootPath.toString());
 		
 	}
 }
