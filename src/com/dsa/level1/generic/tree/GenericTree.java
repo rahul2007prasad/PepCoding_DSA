@@ -2,6 +2,7 @@ package com.dsa.level1.generic.tree;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -107,6 +108,13 @@ public class GenericTree {
 			}
 		}
 	}
+	public static void mirrorTree(Node node) {
+		for(Node child : node.children) {
+			mirrorTree(child);
+		}
+		
+		Collections.reverse(node.children);
+	}
 	
 	public static void levelOrderLineWiseZigZag(Node node) {
 		Stack<Node> ms = new Stack<GenericTree.Node>();
@@ -137,6 +145,9 @@ public class GenericTree {
 				System.out.println();
 			}
 		}
+		
+		
+		
 		
 	}
 	
