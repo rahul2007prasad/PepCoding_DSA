@@ -116,6 +116,25 @@ public class GenericTree {
 		Collections.reverse(node.children);
 	}
 	
+	
+	public static void removeLeavesFromGenericTree(Node node) {
+		
+		for(int i = node.children.size() - 1 ; i >= 0 ; i--) {
+			Node child = node.children.get(i);
+			if(child.children.size() == 0) {
+				node.children.remove(child);
+			}
+		}
+		
+		for(Node child : node.children) {
+			removeLeavesFromGenericTree(child);
+		}
+		
+		
+		
+	}
+	
+	
 	public static void levelOrderLineWiseZigZag(Node node) {
 		Stack<Node> ms = new Stack<GenericTree.Node>();
 		ms.push(node);
