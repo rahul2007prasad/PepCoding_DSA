@@ -240,7 +240,23 @@ public class GenericTree {
 	
 	//----
 	//Are tree similar
-	
+	public static boolean areSimilar(Node node1, Node node2) {
+		if(node1.children.size() != node2.children.size()) {
+			return false;
+		}
+		
+		for(int i=0 ; i < node1.children.size() ;i++) {
+			Node c1 = node1.children.get(i);
+			Node c2 = node2.children.get(i);
+			
+			if(areSimilar(c1, c2) == false) {
+				return false;
+			}
+		}
+		return true;
+		
+		
+	}
 	
 	
 	//----
