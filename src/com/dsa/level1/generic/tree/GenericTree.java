@@ -360,9 +360,33 @@ public class GenericTree {
 		
 	}
 	
+	//----------
+	//Node with maximum subtree
+	static int msn =0;
+	static int ms = Integer.MIN_VALUE;
+	
+	public static int retSumAndCalculateMSST(Node node) {
+		int sum =0 ;
+		for(Node child : node.children) {
+			int csum = retSumAndCalculateMSST(child);
+			sum +=csum;
+		}
+		sum += node.data;
+		
+		if(sum > ms) {
+			msn = node.data;
+			ms = sum;
+		}
+		return sum;
+		
+	}
 	
 	//----
+	//calculate diameter of tree
 	
+	public static void 
+	
+	//----
 	
 	
 	public static void levelOrderLineWiseZigZag(Node node) {
