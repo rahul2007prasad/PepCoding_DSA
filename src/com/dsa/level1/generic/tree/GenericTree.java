@@ -260,6 +260,28 @@ public class GenericTree {
 	
 	
 	//----
+	//Are tree miror in shape
+	
+	public static boolean areMirror(Node node1 , Node node2) {
+		if(node1.children.size() != node2.children.size()) {
+			return false;
+		}
+		
+		for(int i =0 ; i < node1.children.size() ;i++) {
+			int j = node1.children.size() -1 -i;
+			Node c1 = node1.children.get(i);
+			Node c2 = node2.children.get(j);
+			
+			if(areMirror(c1 , c2) == false) {
+				return false;
+			}
+		}
+		return true;
+		
+		
+		
+	}
+	
 	public static void levelOrderLineWiseZigZag(Node node) {
 		Stack<Node> ms = new Stack<GenericTree.Node>();
 		ms.push(node);
