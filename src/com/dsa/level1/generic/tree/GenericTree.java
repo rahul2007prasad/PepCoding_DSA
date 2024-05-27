@@ -199,6 +199,51 @@ public class GenericTree {
 		
 	}
 	
+	
+	// lowest common ancestors
+	public static int lowestCommonAncestors(Node node , int d1 , int d2) {
+		ArrayList<Integer> p1 = nodeToRootPath(node, d1);
+		ArrayList<Integer> p2 = nodeToRootPath(node, d2);
+		
+		int i = p1.size() - 1;
+		int j = p2.size() -1 ;
+		while(i >= 0 && j >= 0 && p1.get(i) == p2.get(j)) {
+			i--;
+			j--;
+		}
+		i++;
+		j++;
+		return p1.get(i);
+		
+		
+	}
+	
+	//distnace btwn two nodes
+	public static int distanceBWNodes(Node node , int d1 , int d2) {
+		ArrayList<Integer> p1 = nodeToRootPath(node, d1);
+		ArrayList<Integer> p2 = nodeToRootPath(node, d2);
+		
+		int i = p1.size() - 1;
+		int j = p2.size() -1 ;
+		while(i >= 0 && j >= 0 && p1.get(i) == p2.get(j)) {
+			i--;
+			j--;
+		}
+		i++;
+		j++;
+		
+		return i + j;
+		
+	}
+	
+	
+	
+	//----
+	//Are tree similar
+	
+	
+	
+	//----
 	public static void levelOrderLineWiseZigZag(Node node) {
 		Stack<Node> ms = new Stack<GenericTree.Node>();
 		ms.push(node);
@@ -290,6 +335,16 @@ public class GenericTree {
 		System.out.println("Node to root path");
 		ArrayList<Integer> nodeToRootPath = nodeToRootPath(root, 40);
 		System.err.println(nodeToRootPath.toString());
+		
+		
+		System.out.println("---Lowest common ancesors");
+		System.out.println(lowestCommonAncestors(root, 40, 30));
+		
+		
+		System.out.println("Distnace between nodes---");
+		int distanceBWNodes = distanceBWNodes(root, 40, 10);
+		System.out.println("Distnace : "+ distanceBWNodes);
+		
 		
 	}
 }
