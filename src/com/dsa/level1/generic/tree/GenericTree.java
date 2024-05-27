@@ -383,8 +383,32 @@ public class GenericTree {
 	
 	//----
 	//calculate diameter of tree
+	static int dia =0;
+	public static int calculateDiaReturnHeight(Node node) {
+		int dch = -1; //depest child height
+		int sdch = -1; //second depest child height
+		
+		for(Node child : node.children) {
+			int ch = calculateDiaReturnHeight(child);
+			if(ch > dch) {
+				sdch = dch;
+				dch = ch;
+			}else if(ch > sdch) {
+				sdch =ch;
+			}
+		}
+		
+		int cand = dch + sdch +2;
+		if(cand > dia) {
+			dia = cand;
+		}
+		
+		dch +=1;
+		return dch;
 	
-	public static void 
+		
+		
+	}
 	
 	//----
 	
