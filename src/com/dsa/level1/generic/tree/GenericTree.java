@@ -281,6 +281,77 @@ public class GenericTree {
 		
 		
 	}
+	//-----
+	
+	//-------
+	//--- is tree symettric
+	public static boolean isSymmetric(Node node) {
+		
+		return areMirror(node, node);
+		
+		
+		
+	}
+	
+	//-------
+	//Predecessor and successor
+	static Node predecessor;
+	static Node successor;
+	static int state;
+	public static void predecessorAndSuccessor(Node node , int data) {
+		if(state == 0) {
+			if(node.data == data) {
+				state = 1;
+			}else {
+				predecessor = node;
+			}
+		}else if(state ==1){
+			successor = node;
+			state =2;
+		}
+		for(Node child : node.children) {
+			predecessorAndSuccessor(child , data);
+		}
+		
+		
+	}
+	
+	//---
+	// ceil nd floor
+	
+	static int ceil;
+	static int floor;
+	
+	public static void ceilAndFloor(Node node , int data) {
+	ceil = Integer.MAX_VALUE;  // smallest andong largest
+	floor = Integer.MIN_VALUE; // largest amdong smaller
+	
+	if(node.data  > data) {
+		if(node.data < ceil) {
+			ceil = node.data;
+		}
+	}
+	
+	if(node.data < data) {
+		if(node.data > floor) {
+			floor = node.data;
+		}
+	}
+	
+	
+	for(Node child : node.children) {
+		ceilAndFloor(child, data);
+	}
+	
+	
+	
+	
+	}
+	
+	
+	//----
+	
+	
 	
 	public static void levelOrderLineWiseZigZag(Node node) {
 		Stack<Node> ms = new Stack<GenericTree.Node>();
