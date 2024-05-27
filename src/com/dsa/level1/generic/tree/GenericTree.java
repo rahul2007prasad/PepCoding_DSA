@@ -343,9 +343,21 @@ public class GenericTree {
 		ceilAndFloor(child, data);
 	}
 	
+	}
+	//-------------
+	//kth largest element
 	
-	
-	
+	public static int kthlargest(Node node , int k) {
+		floor = Integer.MIN_VALUE;
+		int factor = Integer.MAX_VALUE;
+		for(int i =0 ; i < k ; i++) {
+			ceilAndFloor(node, factor);
+			factor = floor;
+			floor = Integer.MIN_VALUE;
+			
+		}
+		return factor;	
+		
 	}
 	
 	
