@@ -1,7 +1,9 @@
 package com.dsa.level1.binarytree;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class BinaryTree {
 
@@ -129,6 +131,103 @@ public class BinaryTree {
 		}
 		
 	}
+	
+	public static class Pair{
+		Node node;
+		int state;
+		public Pair(Node node , int state) {
+			this.node = node;
+			this.state = state;
+		}
+	}
+	
+	//iterative pre ,post ,inorder traversal
+	
+	public static void iterativeTraversal(Node node) {
+		
+		//state 1 :pre ,++state
+		//state 2 : inorder ,statte+
+		//state 3: post order,pop
+		
+		Stack<Pair> st = new Stack();
+		Pair rtp = new Pair(node , 1);
+		st.push(rtp);
+		
+		String pre ="";
+		String in = "";
+		String post = "";
+		
+		while(st.size() > 0) {
+			Pair top = st.peek();
+			if(top.state == 1) { //pre ,s++,left
+				pre += top.node.data + " ";
+				top.state++;
+				
+				if(top.node.left != null) {
+					Pair lp = new Pair(top.node.left , 1);
+					st.push(lp);
+				}
+				
+			}else if(top.state == 2) {// in , s++ , right
+				in += top.node.data + " ";
+				top.state++;
+				
+				if(top.node.right != null) {
+					Pair rp = new Pair(top.node.right , 1);
+					st.push(rp);
+				}
+				
+			}else { //post ,pop
+				post += top.node.data;
+				st.pop();
+			}
+		}
+		
+		
+		
+	}
+	
+	//find
+	public static boolean find(Node node ,int data) {
+		
+		ArrayList<Integer> path;
+		path = new ArrayList<Integer>();
+		if(node == null) {
+			return false;
+		}
+		
+		if(node.data == data) {
+			path.add(node.data);
+			return true;
+		}
+		boolean filc = find(node.left , data);
+		if(filc)
+		{
+			path.add(node.data);
+			return true;
+		}
+		boolean firc = find(node.right , data);
+		if(firc) {
+			path.add(node.data);
+			return true;
+		}
+		return false;
+		
+	}
+	
+	//Node to path
+	
+	/*
+	 * public static void nodeToRootPath(Node node , int data) {
+	 * 
+	 * ArrayList<Integer> path; path = new ArrayList<Integer>();
+	 * 
+	 * boolean find = find(node, data);
+	 * 
+	 * if(find == true) { path.add(node.data); }
+	 * 
+	 * }
+	 */
 	
 	
 	
