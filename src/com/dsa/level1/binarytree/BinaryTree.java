@@ -1,5 +1,8 @@
 package com.dsa.level1.binarytree;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
+
 public class BinaryTree {
 
 	
@@ -103,7 +106,29 @@ public class BinaryTree {
 	}
 	
 	//level order traversal
-	
+	public static void levelOrderTraversal(Node node) {
+		//rpa --remove --print --add
+		
+		Queue<Node> mq = new ArrayDeque<>();
+		mq.add(node);
+		
+		while(mq.size() > 0) {
+			int count = mq.size();
+			for(int i =0; i < count ; i++) {
+				node = mq.remove();
+				System.out.print(node.data +" ");
+				
+				if(node.left != null) {
+					mq.add(node.left);
+				}
+				if(node.right != null) {
+					mq.add(node.right);
+				}
+			}
+			System.out.println();
+		}
+		
+	}
 	
 	
 	
