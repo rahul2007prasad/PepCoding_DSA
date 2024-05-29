@@ -231,23 +231,26 @@ public class BinaryTree {
 	
 	//print k level down
 	
-	public static void printKLevelsDown(Node node , int k) {
-		if(node == null || k < 0) {
+	public static void printKLevelsDown(Node node , int k , Node blocker) {
+		if(node == null || k < 0 || node == blocker) {
 			return ;
 		}
 		
 		if(k == 0) {
 			System.out.println(node.data);
 		}
-		printKLevelsDown(node.left, k - 1);
-		printKLevelsDown(node.right, k - 1);
+		printKLevelsDown(node.left, k - 1 , blocker);
+		printKLevelsDown(node.right, k - 1 , blocker);
 	}
 	
 	//print k level far
 	
-	public static void printKLevelFar(Node node , int k) {
-		
-		
+	public static void printKLevelFar(Node node ,int data , int k) {
+		ArrayList<Node > path  = new ArrayList<BinaryTree.Node>();
+				find(node ,data);
+		for(int i =0 ; i < path.size() && i <= k; i++) {
+			printKLevelsDown(path.get(i), k -1 , i == 0 ? null : path.get(i));
+		}
 	}
 	
 }
