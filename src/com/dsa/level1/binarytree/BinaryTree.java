@@ -311,9 +311,39 @@ public class BinaryTree {
 	
 	
 	//print single child nodes
-	public static void printSingleChild(Node node) {
+	public static void printSingleChildNode(Node node , Node parent) {
+		if(node == null) {
+			return;
+		}
+		if(parent != null  && parent.left == node && parent.right == null ) {
+			System.out.println(node.data);
+		}else if(parent != null && parent.right == node &&  parent.left == null) {
+			System.out.println(node.data);	
+		}
+		
+		printSingleChildNode(node.left, node);
+		printSingleChildNode(node.right, node);
 		
 		
+	}
+	
+	//remove leaves
+	public static Node removeLeaves(Node node) {
+		if(node == null) {
+			return null;
+		}
+		
+		if(node.left == null && node.right == null) {
+			return null;
+		}
+		
+		Node nlr = removeLeaves(node.left);
+		Node nrr = removeLeaves(node.right);
+		
+		node.left = nlr ;
+		node.right = nrr;
+		
+		return node;
 	}
 	
 	
