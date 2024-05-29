@@ -253,4 +253,51 @@ public class BinaryTree {
 		}
 	}
 	
+	
+	//path to leaf from root
+	
+	public static void pathTOLeafFromRoot(Node node , String path , int sum , int low , int high) {
+		
+		if(node == null) {
+			return;
+		}
+		if(node.left == null && node.right == null) {
+			sum += node.data;
+			if(sum >= low && sum <= high) {
+				System.out.println(path + node.data);
+			}
+			return;
+		}
+		
+		pathTOLeafFromRoot(node.left, path + node.data, sum + node.data, low, high);
+		
+		pathTOLeafFromRoot(node.right, path + node.data, sum + node.data, low, high);
+		
+	}
+	
+	
+	
+	//transormed to  left cloned tree
+	public static Node createLeftClonedTree(Node node) {
+		if(node == null) {
+			return null;
+		}
+		Node lcr = createLeftClonedTree(node.left);
+		Node rcr = createLeftClonedTree(node.right);
+		
+		Node nn = new Node( lcr,null , node.data );
+		node.left = nn;
+		node.right = rcr;
+		
+		return node;
+		
+	}
+	
+	//transformed back from a left cloned tree
+	
+	
+	
+	public static void main(String[] args) {
+		//pathTOLeafFromRoot(root,"",0 , lo ,hi);
+	}
 }
