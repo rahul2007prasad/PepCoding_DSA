@@ -294,6 +294,30 @@ public class BinaryTree {
 	}
 	
 	//transformed back from a left cloned tree
+	public static Node transBackFromLeftClonedTree(Node node) {
+		if(node == null) {
+			return null;
+		}
+		
+		Node lnn = transBackFromLeftClonedTree(node.left.left);
+		Node rnn = transBackFromLeftClonedTree(node.right);
+		
+		node.left = lnn;
+		node.right = rnn;
+		return node;
+		
+	}
+	
+	
+	
+	//print single child nodes
+	public static void printSingleChild(Node node) {
+		
+		
+	}
+	
+	
+	
 	
 	
 	
