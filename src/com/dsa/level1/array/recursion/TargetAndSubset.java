@@ -20,7 +20,7 @@ public class TargetAndSubset {
 	public static void printTargetSumSubsets(int[] arr , int idx , String set , int sos , int tar) {
 		if(idx == arr.length) {
 			if(sos == tar) {
-				System.out.println(set);
+				System.out.println(set + ".");
 			}
 			return;
 		}
