@@ -41,9 +41,32 @@ public class BinarySearchTree {
 		return node;
 	}
 	
+	public static Node addNode(Node node ,int data) {
+		if(node == null) {
+			return new Node(data , null , null);
+		}
+		
+		if(data < node.data) {
+			node.left =  addNode(node.left, data);
+		}else if(data  > node.data) {
+		   node.right =	addNode(node.right, data);
+		}else {
+			// nothing to do
+		}
+		return node;
+	}
+	
 	public static void main(String[] args) {
 		int [] arr = {12 , 25 , 37 , 50 , 62 , 75 , 87};
 		Node root = constructor(arr , 0 , arr.length - 1);
+		
+		
+		
+		display(root);
+		
+		//add node
+		addNode(root, 38);
+		System.out.println("-----");
 		display(root);
 	}
 }
