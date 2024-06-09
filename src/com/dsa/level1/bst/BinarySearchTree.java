@@ -1,5 +1,7 @@
 package com.dsa.level1.bst;
 
+import java.rmi.Remote;
+
 public class BinarySearchTree {
 	public static class Node{
 		int data;
@@ -56,6 +58,39 @@ public class BinarySearchTree {
 		return node;
 	}
 	
+	public static int max(Node node) {
+		if(node.right != null) {
+			return max(node.right);
+		}else {
+			return node.data;
+		}
+	}
+public static Node removeNode(Node node , int data) {
+	if(node == null) {
+		return null;
+	}
+	
+		if(data > node.data) {
+			node.right = removeNode(node.right, data)
+		}else if( data < node.data) {
+			node.left = removeNode(node.left, data);
+		}else {
+			if(node.left != null && node.right != null) {
+				int lmax = max(node.left);
+				node.data = lmax;
+				node.left = removeNode(node.left, lmax);
+				return node;
+			}else if(node.left != null) {
+				return node.left; 
+			}else if(node.right != null) {
+				return node.right;
+			}else {
+				return null;
+			}
+		}
+	}
+	
+	
 	public static void main(String[] args) {
 		int [] arr = {12 , 25 , 37 , 50 , 62 , 75 , 87};
 		Node root = constructor(arr , 0 , arr.length - 1);
@@ -69,4 +104,6 @@ public class BinarySearchTree {
 		System.out.println("-----");
 		display(root);
 	}
+	
+  
 }
