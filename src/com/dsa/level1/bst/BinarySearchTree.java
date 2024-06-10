@@ -71,7 +71,7 @@ public static Node removeNode(Node node , int data) {
 	}
 	
 		if(data > node.data) {
-			node.right = removeNode(node.right, data)
+			node.right = removeNode(node.right, data);
 		}else if( data < node.data) {
 			node.left = removeNode(node.left, data);
 		}else {
@@ -89,6 +89,23 @@ public static Node removeNode(Node node , int data) {
 			}
 		}
 	}
+
+//replace sum of larger in BST
+static int sum = 0;
+public static void replaceWithSumOfLarger(Node node) {
+	if(node == null) {
+		return;
+	}
+	replaceWithSumOfLarger(node.right);
+	int od = node.data;
+	node.data = sum;
+	sum += od;
+	
+	
+	replaceWithSumOfLarger(node.left);
+	
+}
+
 	
 	
 	public static void main(String[] args) {
