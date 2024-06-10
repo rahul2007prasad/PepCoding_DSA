@@ -120,6 +120,21 @@ public static int lca(Node node , int d1 , int d2) {
 	}
 }
 
+//Print in range in BST
+public static void  printInRange(Node node , int d1 , int d2) {
+	
+	if(d1 < node.data && d2 < node.data) {
+		printInRange(node.left, d1, d2);
+		
+	}else if(d1 > node.data && d2 > node.data) {
+		printInRange(node.right, d1, d2);
+	}else {
+		printInRange(node.left, d1, d2);
+		System.out.println(node.data);
+		printInRange(node.right, d1, d2);
+	}
+}
+
 	
 	
 	public static void main(String[] args) {
