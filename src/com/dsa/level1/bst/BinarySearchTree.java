@@ -135,7 +135,45 @@ public static void  printInRange(Node node , int d1 , int d2) {
 	}
 }
 
+
+// target sum pair
+public static boolean find(Node node , int data) {
+	if(node == null) {
+		return false;
+	}
+	if(data > node.data) {
+		find(node.right, data);
+	}else if(data < node.data) {
+		find(node.left , data);
+	}else {
+		return true;
+	}
 	
+}
+
+
+public static void targetSumPair(Node root ,Node node , int tar) {
+	if(node == null) {
+		return;
+	}
+	targetSumPair(root ,node.left, tar);
+	int comp = tar - node.data;
+	if(node.data < comp) {
+		if(find(root , comp) == true) {
+			System.out.println(node.data + " " + comp);
+		}
+	}
+	
+	targetSumPair(root , node.right, tar);
+
+	
+}
+	
+
+//end target sum pair
+
+
+
 	
 	public static void main(String[] args) {
 		int [] arr = {12 , 25 , 37 , 50 , 62 , 75 , 87};
