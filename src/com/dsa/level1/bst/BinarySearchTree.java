@@ -1,6 +1,8 @@
 package com.dsa.level1.bst;
 
-import java.rmi.Remote;
+
+import java.util.ArrayList;
+import java.util.Stack;
 
 public class BinarySearchTree {
 	public static class Node{
@@ -88,6 +90,7 @@ public static Node removeNode(Node node , int data) {
 				return null;
 			}
 		}
+		return null;
 	}
 
 //replace sum of larger in BST
@@ -148,7 +151,7 @@ public static boolean find(Node node , int data) {
 	}else {
 		return true;
 	}
-	
+	return false;
 }
 
 
@@ -172,6 +175,108 @@ public static void targetSumPair(Node root ,Node node , int tar) {
 
 //end target sum pair
 
+//target sum pair other approach
+
+public static void targetSumNewApproach(Node node , ArrayList<Integer> list) {
+	if(node == null) {
+		return;
+	}
+	
+	targetSumNewApproach(node.left, list);
+	list.add(node.data);
+	targetSumNewApproach(node.right, list);
+	
+}
+
+public static class ITPair{
+	Node node;
+	int state = 0;
+	
+	ITPair(Node node , int state){
+		this.node = node;
+		this.state =state;
+	}
+}
+
+public static void bestApproachTargetSum(Node node , int tar) {
+	
+	Stack<ITPair> ls = new Stack<BinarySearchTree.ITPair>();
+
+	Stack<ITPair> rs = new Stack<BinarySearchTree.ITPair>();
+	
+	ls.push(new ITPair(node , 0));
+	rs.push(new ITPair(node , 0));
+	
+	Node left = getNextFromNormalInorder(ls);
+	Node right = getNextFromReverseInorder(rs);
+	
+	while(left.data < right.data) {
+		if(left.data + right.data < tar) {
+			left = getNextFromNormalInorder(ls);
+		}else if(left.data + right.data > tar) {
+			right = getNextFromReverseInorder(rs);
+		}else {
+			System.out.println(left.data +" " + right.data);
+			left = getNextFromNormalInorder(ls);
+			right = getNextFromReverseInorder(rs);
+		}
+		
+	}
+	
+	
+}
+
+public static Node getNextFromNormalInorder(Stack<ITPair> st) {
+	while(st.size() > 0) {
+		ITPair top = st.peek();
+		if(top.state ==0) {
+			if(top.node.left != null) {
+				st.push(new ITPair(top.node.left , 0));
+			}
+			top.state++;
+		}else if(top.state == 1) {
+			if(top.node.right != null) {
+				st.push(new ITPair(top.node.right ,0));
+			}
+			top.state++;
+			return top.node;
+		}else {
+			st.pop();
+		}
+	}
+	return null;
+}
+
+
+
+
+
+
+
+
+
+
+public static Node getNextFromReverseInorder(Stack<ITPair> st) {
+	while(st.size() > 0) {
+		ITPair top = st.peek();
+		if(top.state ==0) {
+			if(top.node.right != null) {
+				st.push(new ITPair(top.node.right , 0));
+			}
+			top.state++;
+		}else if(top.state == 1) {
+			if(top.node.left != null) {
+				st.push(new ITPair(top.node.left ,0));
+			}
+			top.state++;
+			return top.node;
+		}else {
+			st.pop();
+		}
+	}
+	return null;
+}
+
 
 
 	
@@ -187,6 +292,30 @@ public static void targetSumPair(Node root ,Node node , int tar) {
 		addNode(root, 38);
 		System.out.println("-----");
 		display(root);
+		
+		
+		
+		/*targetSumNewApproach start */
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		targetSumNewApproach(root, list);
+		int li = 0; 
+		int ri = list.size() -1;
+		int data = 10;
+		while(li  < ri) {
+			int left = list.get(li);
+			int right = list.get(ri);
+			if(left + right < data) {
+				li++;
+			}else if(left + right > data) {
+				ri--;
+			}else {
+				System.out.println(left + "  " + right);
+				li++;
+				ri--;
+			}
+		}
+		
+		/*targetSumNewApproach end */
 	}
 	
   
