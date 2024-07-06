@@ -69,6 +69,9 @@ public class SpreadInfectionGraphDP {
 				continue;
 			}else {
 				visited[remp.v] = remp.time;
+				if(remp.time > t) {
+					break;
+				}
 				count++;
 				
 				for(Edge e : graph[remp.v]) {
