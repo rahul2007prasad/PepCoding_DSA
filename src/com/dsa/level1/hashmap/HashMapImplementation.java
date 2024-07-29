@@ -153,6 +153,12 @@ public class HashMapImplementation {
 			System.out.println("First Index "+hm.get(1));
 			System.out.println("Contains " + hm.containsKey(1));
 			hm.remove(1);
+			hm.put(2, "r");
+			hm.put(3, "a");
+			hm.put(4, "h");
+			hm.put(5, "u");
+			hm.put(6, "l");
+			
 			hm.display();
 			
 		}

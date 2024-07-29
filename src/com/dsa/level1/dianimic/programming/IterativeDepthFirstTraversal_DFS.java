@@ -6,9 +6,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Stack;
 
-import com.dsa.level1.dianimic.programming.Dijkstra_shortes_pathInWeight.Edge;
-import com.dsa.level1.dianimic.programming.Dijkstra_shortes_pathInWeight.Pair;
-
 public class IterativeDepthFirstTraversal_DFS {
 
 	static class Edge{
