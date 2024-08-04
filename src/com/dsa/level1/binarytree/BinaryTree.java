@@ -97,6 +97,10 @@ public class BinaryTree {
 			return;
 		}
 		
+		//PreOrder --> Node Left Right
+		///Inorder --> Left Node Right
+		//Postorder --> Left Right Node
+		
 		System.out.println(node.data  +"in preosder"); //euler left --> pre
 		traversal(node.left);
 		System.out.println(node.data +"in inordder");
@@ -230,7 +234,7 @@ public class BinaryTree {
 	 */
 	
 	//print k level down
-	
+	//go to k level down an print all node
 	public static void printKLevelsDown(Node node , int k , Node blocker) {
 		if(node == null || k < 0 || node == blocker) {
 			return ;

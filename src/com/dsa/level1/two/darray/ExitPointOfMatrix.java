@@ -37,7 +37,7 @@ public class ExitPointOfMatrix {
 			}else if(dir == 1) { //south
 				i++;
 			}else if(dir == 2) { //west
-				j--;
+			   	j--;
 			}else if(dir == 3){ //south
 				i--;
 			}

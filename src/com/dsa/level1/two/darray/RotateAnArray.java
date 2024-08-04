@@ -39,7 +39,7 @@ Scanner sc = new Scanner(System.in);
 				}
 	}
 	
-	
+	//rotate by k
 	public static void rotate(int[] a ,int k) {
 		
 		k = k % a.length;

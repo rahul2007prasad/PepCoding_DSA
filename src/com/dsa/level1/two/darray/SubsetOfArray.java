@@ -19,7 +19,7 @@ public class SubsetOfArray {
 		int limit = (int) Math.pow(2, arr.length);
 		
 		for(int  i = 0;  i < limit ; i++) {
-			//convert array to binary and use 0's and 1's to print or not
+			//convert i to binary and use 0's and 1's to print or not
 			String set = "";
 			int temp = i;
 			for(int j =arr.length - 1 ; j >= 0 ; j--) {
