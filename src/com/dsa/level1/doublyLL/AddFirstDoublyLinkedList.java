@@ -31,10 +31,48 @@ public class AddFirstDoublyLinkedList {
 			this.size++;
 		}
 
+		//add first
 		public void addFirst(int val) {
 			Node node = new Node(val);
 			addFirstNode(node);
 		}
+		
+		//Exception
+		public boolean ListIsEmptyException() {
+			if(this.size ==0) {
+				System.out.print("ListIsEmpty: ");
+				return true;
+			}
+			return false;
+		}
+		
+		
+		//remove first
+		private Node removeFirstNode() {
+			Node node = this.head;
+			if(this.size == 1)
+				this.head = this.tail = null;
+			else {
+				Node forw = node.next;
+				node.next = null;
+				forw.prev = null;
+				
+				this.head = forw;
+			}
+			
+			
+			this.size--;
+			return node;
+		}
+		public int removeFirst() {
+			if(ListIsEmptyException())
+				return -1;
+			
+			return removeFirstNode().data;
+					
+		}
+		
+		
 
 		public String toString() {
 			StringBuilder sb = new StringBuilder();
@@ -63,6 +101,9 @@ public class AddFirstDoublyLinkedList {
 				if (s[0].equals("addFirst"))
 					dll.addFirst(Integer.parseInt(s[1]));
 
+				else if (s[0].equals("removeFirst"))
+					System.out.println(dll.removeFirst());
+				
 				str = sc.nextLine();
 			}
 			System.out.println(dll);
@@ -75,6 +116,23 @@ public class AddFirstDoublyLinkedList {
 		  addFirst 2 
 		  addFirst 3 
 		  stop
+		  
+		  
+		  
+		  2. removeFirst
+		  
+		  addFirst 2
+addFirst 3
+removeFirst
+3
+addFirst 4
+removeFirst
+4
+removeFirst
+2
+removeFirst
+ListIsEmpty: -1
+
 		  
 		 */
 	}
