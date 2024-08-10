@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public class StackToQueue_RemoveEficient {
 	public static class StackToQueueAdapter{
-		
+	//Remove Efficient
 		
 		Stack<Integer> mainS;
 		Stack<Integer> helperS;
