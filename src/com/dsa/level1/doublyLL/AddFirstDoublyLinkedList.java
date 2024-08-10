@@ -128,6 +128,33 @@ public class AddFirstDoublyLinkedList {
 			
 			return this.tail.data;
 		}
+		
+		//getAtIndex in DLL
+		
+		private Node getNodeAt(int index) {
+			Node curr = this.head;
+			
+			while(index-- > 0)
+				curr = curr.next;
+			
+			return curr;
+		}
+		public int getAt(int index) {
+			if(ListIsEmptyException())
+				return -1;
+			else if(IndexIsInvalidException(index, 0, this.size -1))
+				return -1;
+			return getNodeAt(index).data;
+		}
+		
+		
+		private boolean IndexIsInvalidException(int index , int leftRange , int rightRange) {
+			if(index < leftRange || index > rightRange) {
+				System.out.println("IndexIsInvalid: ");
+				return true;
+			}
+			return false;
+		}
 
 		public String toString() {
 			StringBuilder sb = new StringBuilder();
@@ -174,6 +201,9 @@ public class AddFirstDoublyLinkedList {
 				else if (s[0].equals("isEmpty"))
 					System.out.println(dll.isEmpty());
 				
+				
+				else if (s[0].equals("getAt"))
+					System.out.println(dll.getAt(2));
 				
 				
 				
