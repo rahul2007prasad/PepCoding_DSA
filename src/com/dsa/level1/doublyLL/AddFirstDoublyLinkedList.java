@@ -19,6 +19,7 @@ public class AddFirstDoublyLinkedList {
 		private Node tail = null;
 		private int size = 0;
 
+		/* -----------*/
 		// Add first in DLL
 		private void addFirstNode(Node node) {
 			if (this.size == 0) {
@@ -36,7 +37,10 @@ public class AddFirstDoublyLinkedList {
 			Node node = new Node(val);
 			addFirstNode(node);
 		}
+		/* -----------*/
 		
+		
+		/* -----------*/
 		//Exception
 		public boolean ListIsEmptyException() {
 			if(this.size ==0) {
@@ -45,8 +49,9 @@ public class AddFirstDoublyLinkedList {
 			}
 			return false;
 		}
+		/* -----------*/
 		
-		
+		/* -----------*/
 		//remove first
 		private Node removeFirstNode() {
 			Node node = this.head;
@@ -71,7 +76,33 @@ public class AddFirstDoublyLinkedList {
 			return removeFirstNode().data;
 					
 		}
+		/* -----------*/
 		
+		// Remove last in DLL
+		private Node removeLastNode() {
+			Node node = this.tail;
+			
+			if(this.size == 1)
+				this.head = this.tail = null;
+			else {
+				Node prev = node.prev;
+				node.prev = null;
+				prev.next = null;
+				
+				this.tail = prev;
+						
+			}
+			
+			
+			this.size--;
+			return node;
+		}
+		public int removeLast() {
+			if(ListIsEmptyException())
+				return -1;
+			
+			return removeLastNode().data;
+		}
 		
 
 		public String toString() {
