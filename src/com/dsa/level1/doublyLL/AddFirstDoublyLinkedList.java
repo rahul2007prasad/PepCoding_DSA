@@ -103,7 +103,31 @@ public class AddFirstDoublyLinkedList {
 			
 			return removeLastNode().data;
 		}
+		/*--------------*/
+		public int size() {
+			return this.size;
+		}
+		public boolean isEmpty() {
+
+			if(this.size ==0)
+				return true;
+			return false;
+		}
 		
+		public int getFirst() {
+			if(ListIsEmptyException())
+				return -1;
+			
+			return this.head.data;
+			
+		}
+		
+		public int getLast() {
+			if(ListIsEmptyException())
+				return -1;
+			
+			return this.tail.data;
+		}
 
 		public String toString() {
 			StringBuilder sb = new StringBuilder();
@@ -134,6 +158,24 @@ public class AddFirstDoublyLinkedList {
 
 				else if (s[0].equals("removeFirst"))
 					System.out.println(dll.removeFirst());
+				
+				
+				else if (s[0].equals("removeLast"))
+					System.out.println(dll.removeLast());
+				
+				else if (s[0].equals("getFirst"))
+					System.out.println(dll.getFirst());
+				
+				
+				else if (s[0].equals("getLast"))
+					System.out.println(dll.getLast());
+				
+
+				else if (s[0].equals("isEmpty"))
+					System.out.println(dll.isEmpty());
+				
+				
+				
 				
 				str = sc.nextLine();
 			}
