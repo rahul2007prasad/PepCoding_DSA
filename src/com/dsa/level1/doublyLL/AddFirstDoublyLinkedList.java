@@ -2,6 +2,8 @@ package com.dsa.level1.doublyLL;
 
 import java.util.Scanner;
 
+import com.dsa.level1.doublyLL.AddFirstDoublyLinkedList.DoublyLinkedList.Node;
+
 public class AddFirstDoublyLinkedList {
 
 	public static class DoublyLinkedList {
@@ -198,6 +200,41 @@ public class AddFirstDoublyLinkedList {
 						Node node = new Node(data);
 						addNodeAt(index , node);
 					}
+				}
+				
+				
+				//remove at index in dll
+				private Node removeNodeAt(int index) {
+					if(index ==0)
+						return removeFirstNode();
+					else if(index == this.size -1) {
+						return removeLastNode();
+					}else {
+						Node node = getNodeAt(index);
+						Node prev = node.prev;
+						Node forw = node.next;
+						
+						prev.next = forw;
+						forw.prev = prev;
+						
+						node.next = node.prev = null;
+						this.size--;
+						return node;
+					}
+				}
+				public int removeAt(int index) {
+					if(ListIsEmptyException()) {
+						System.out.println("Empty");
+						return -1;
+					}
+					else if(IndexIsInvalidException(index, 0, this.size -1)) {
+						System.out.println("Invalid");
+						return -1;
+					}
+					else {
+						return removeNodeAt(index).data;
+					}
+					
 				}
 		
 		private boolean IndexIsInvalidException(int index , int leftRange , int rightRange) {
