@@ -78,6 +78,24 @@ public class AddFirstDoublyLinkedList {
 		}
 		/* -----------*/
 		
+		//add last
+		private void addLastNode(Node node) {
+			if(this.size == 0) {
+				this.head = this.tail = node;
+			}else {
+				this.tail.next = node;
+				node.prev = this.tail;
+				this.tail = node;
+			}
+			this.size++;
+		}
+		public void addLast(int val) {
+			Node node = new Node(val);
+			addLastNode(node);
+		}
+		
+		
+		
 		// Remove last in DLL
 		private Node removeLastNode() {
 			Node node = this.tail;
@@ -148,6 +166,40 @@ public class AddFirstDoublyLinkedList {
 		}
 		
 		
+		
+		// add at index
+		
+				private void addNodeAt(int index , Node node) {
+					if(index == 0)
+						addFirstNode(node);
+					else if(index == this.size)
+						addLastNode(node);
+					else {
+						Node forw = getNodeAt(index);
+						Node prev = forw.prev;
+						
+						prev.next = node;
+						node.prev = prev;
+						
+						node.next = forw;
+						forw.prev = node;
+						
+						this.size++;
+						
+					}
+				}
+				
+				public void addAt(int index , int data) {
+					if(ListIsEmptyException()) {
+						System.out.println("Empty " + "-1");
+					}else if(IndexIsInvalidException(index, 0, this.size)) {
+						System.out.println("Invalid" + "-1");
+					}else {
+						Node node = new Node(data);
+						addNodeAt(index , node);
+					}
+				}
+		
 		private boolean IndexIsInvalidException(int index , int leftRange , int rightRange) {
 			if(index < leftRange || index > rightRange) {
 				System.out.println("IndexIsInvalid: ");
@@ -155,6 +207,11 @@ public class AddFirstDoublyLinkedList {
 			}
 			return false;
 		}
+		
+		
+		
+		
+		
 
 		public String toString() {
 			StringBuilder sb = new StringBuilder();
