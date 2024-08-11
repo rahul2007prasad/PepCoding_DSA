@@ -374,6 +374,35 @@ public class AddFirstDoublyLinkedList {
 		}
 		
 		
+		//
+		
+		public int removeNode(Node refNode) {
+			Node prev = refNode.prev;
+			Node forw = refNode.next;
+			
+			if(this.size == 1) {
+				this.head = this.tail = null;
+			}else if(prev == null)
+			{
+				this.head = forw;
+			
+			}else if(forw == null) {
+				this.tail = prev;
+			}else {
+				prev.next = forw;
+				forw.prev = prev;
+			}
+				
+				refNode.prev = refNode.next = this.head.prev = this.tail = null;
+				this.size--;
+				return refNode.data;
+		}
+		
+		public int removeNode(int idx) {
+			Node node = getNodeAt(idx);
+			return removeBefore(node);
+		}
+		
 		
 		
 		
