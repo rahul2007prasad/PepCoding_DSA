@@ -404,7 +404,39 @@ public class AddFirstDoublyLinkedList {
 		}
 		
 		
+		// display forw and backward
+		public void displayForw() {
+			StringBuilder sb = new StringBuilder("[");
+			
+			Node curr = this.head;
+			
+			while(curr != null) {
+				sb.append(curr.data);
+				if(curr.next != null)
+					sb.append(", ");
+				curr = curr.next;
+			}
+			
+			sb.append("]");
+			System.out.println(sb.toString());
+		}
 		
+		public void displayBack() {
+StringBuilder sb = new StringBuilder("[");
+			
+			Node curr = this.tail;
+			
+			while(curr != null) {
+				sb.append(curr.data);
+				if(curr.prev != null)
+					sb.append(", ");
+				curr = curr.prev;
+			}
+			
+			sb.append("]");
+			System.out.println(sb.toString());
+		
+		}
 		
 
 		public String toString() {
