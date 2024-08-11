@@ -204,6 +204,7 @@ public class AddFirstDoublyLinkedList {
 				
 				
 				//remove at index in dll
+				//time com  : O(n) // space O(1)
 				private Node removeNodeAt(int index) {
 					if(index ==0)
 						return removeFirstNode();
@@ -235,6 +236,33 @@ public class AddFirstDoublyLinkedList {
 						return removeNodeAt(index).data;
 					}
 					
+				}
+				
+				//add node before node
+				//time com : O(1)
+				private void addBeforeNode(Node refNode , Node node) {
+					Node prevNode = refNode.prev;
+					if(prevNode == null) {
+						node.next = refNode;
+						refNode.prev = node;
+						this.head = node;
+					}else {
+						prevNode.next = node;
+						node.prev =prevNode;
+						
+						node.next = refNode;
+						refNode.prev = node;
+					}
+					this.size++;
+				}
+				
+				public void addBeforeNode(Node refNode , int data) {
+					Node node = new Node(data);
+					addBeforeNode(refNode, node);
+				}
+				public void addBefore(int idx , int data) {
+					Node node = getNodeAt(idx);
+					addBeforeNode(node , data);
 				}
 		
 		private boolean IndexIsInvalidException(int index , int leftRange , int rightRange) {
