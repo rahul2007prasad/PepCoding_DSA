@@ -265,6 +265,7 @@ public class AddFirstDoublyLinkedList {
 				
 				
 				//add after node in DLL
+				//Time compleciity : O(1) space :O(1)
 				private void addAfterNode(Node refNode , Node node) {
 					Node forwNode = refNode.next;
 					if(forwNode ==  null) {
@@ -292,6 +293,44 @@ public class AddFirstDoublyLinkedList {
 					Node node = getNodeAt(idx);
 					addAfter(node, data);
 				}
+				
+				
+				
+				
+				//remove node after node node in DLL
+				private Node removeNodeAfterNode(Node refNode , Node node) {
+					Node forwNode = refNode.next;
+					if(forwNode.next == null) {
+						refNode.next = null;
+						forwNode.prev = null;
+						
+						this.tail = refNode;
+						
+					}else {
+						refNode.next = forwNode.next;
+						forwNode.next.prev = refNode;
+						
+						forwNode.next = forwNode.prev = null;
+					}
+					this.size--;
+					return forwNode;
+				}
+				
+				
+				public int removeAfter(Node refNode) {
+					if(refNode.next == null) {
+						System.out.println("Invalid index");
+						return -1;
+					}
+					
+					return removeNodeAfterNode(refNode, refNode).data;
+					
+				}
+				public int removeAfter(int idx) {
+					Node node = getNodeAt(idx);
+					return removeAfter(node);
+				}
+				
 		
 		private boolean IndexIsInvalidException(int index , int leftRange , int rightRange) {
 			if(index < leftRange || index > rightRange) {
