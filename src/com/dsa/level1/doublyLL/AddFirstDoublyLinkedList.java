@@ -332,6 +332,39 @@ public class AddFirstDoublyLinkedList {
 				}
 				
 		
+				
+				//remove before node
+		private Node removeBeforeNode(Node refNode) {
+			Node prevNode = refNode.prev;
+			if(prevNode.prev == null) {
+				refNode.prev = null;
+				prevNode.next = null;
+				this.head = refNode;
+			}else {
+				prevNode.prev.next = refNode;
+				refNode.prev = prevNode.prev;
+				
+				prevNode.prev = prevNode.next = null;
+				
+			}
+			
+			this.size--;
+			return prevNode;
+		}
+		
+		public int removeBefore(Node refNode ) {
+			if(refNode.prev == null) {
+				System.out.println("Invalid loc");
+				return -1;
+			}
+			return removeBeforeNode(refNode).data;
+		}
+		public int removeBefore(int idx) {
+			Node node = getNodeAt(idx);
+			return removeBefore(node);
+		}
+				
+				
 		private boolean IndexIsInvalidException(int index , int leftRange , int rightRange) {
 			if(index < leftRange || index > rightRange) {
 				System.out.println("IndexIsInvalid: ");
